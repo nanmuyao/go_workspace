@@ -30,6 +30,7 @@ func NewLinkList() *LinkList {
 	l.Tail = &Node{Value: 0, Pre: nil, Next: nil}
 	l.Head.Next = l.Tail
 	l.Tail.Pre = l.Head
+	l.Len = 0
 	return l
 }
 
@@ -39,6 +40,7 @@ func (l *LinkList) PushFround(n *Node) {
 	n.Pre = l.Head
 	n.Next = next
 	next.Pre = n
+	l.Len += 1
 }
 
 func (l *LinkList) PushTail(n *Node) {
@@ -47,6 +49,7 @@ func (l *LinkList) PushTail(n *Node) {
 	l.Tail.Pre = n
 	n.Next = l.Tail
 	n.Pre = pre
+	l.Len += 1
 }
 
 func (l *LinkList) DeleteNode(n *Node) {
@@ -54,6 +57,7 @@ func (l *LinkList) DeleteNode(n *Node) {
 	next := n.Next
 	pre.Next = next
 	next.Pre = pre
+	l.Len -= 1
 	println("delete node")
 }
 
@@ -61,6 +65,7 @@ func (l *LinkList) DeleteLastNode() {
 	willDelNode := l.Tail.Pre
 	willDelNode.Pre.Next = l.Tail
 	l.Tail.Pre = willDelNode.Pre
+	l.Len -= 1
 }
 
 func (l *LinkList) MoveToHead(n *Node) {
@@ -79,6 +84,8 @@ func (l *LinkList) MoveToHead(n *Node) {
 
 func (l *LinkList) PrintLinkList() {
 	n := l.Head.Next
+	println()
+	fmt.Printf("l len=%d", l.Len)
 	println()
 	for ; n != nil; n = n.Next {
 		fmt.Printf("value = %d ", n.Value)
