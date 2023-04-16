@@ -1,67 +1,91 @@
 package linklist
 
-import "fmt"
+import (
+	"fmt"
+)
 
 // 标准库
 
 type Node struct {
-	value int32
-	pre   *Node
-	next  *Node
-	cnt   uint32
+	Value int32
+	Pre   *Node
+	Next  *Node
 }
 
 func NewNode(v int32) *Node {
 	n := new(Node)
-	n.value = v
-	n.pre = nil
-	n.next = nil
+	n.Value = v
+	n.Pre = nil
+	n.Next = nil
 	return n
 }
 
-var Head *Node = &Node{value: 0, pre: nil, next: nil}
-var Tail *Node = &Node{value: 0, pre: nil, next: nil}
+var Head *Node = &Node{Value: 0, Pre: nil, Next: nil}
+var Tail *Node = &Node{Value: 0, Pre: nil, Next: nil}
 
 type LinkList struct {
-	head *Node
-	tail *Node
+	Head *Node
+	Tail *Node
+	Len  int32
 }
 
 func NewLinkList() *LinkList {
 	l := new(LinkList)
-	l.head = Head
-	l.tail = Tail
-	l.head.next = Tail
-	l.tail.pre = Head
+	l.Head = Head
+	l.Tail = Tail
+	l.Head.Next = Tail
+	l.Tail.Pre = Head
 	return l
 }
 
 func (l *LinkList) PushFround(n *Node) {
-	next := l.head.next
-	l.head.next = n
-	n.pre = l.head
-	n.next = next
-	next.pre = n
+	next := l.Head.Next
+	l.Head.Next = n
+	n.Pre = l.Head
+	n.Next = next
+	next.Pre = n
 }
 
 func (l *LinkList) PushTail(n *Node) {
-	pre := l.tail.pre
-	pre.next = n
-	l.tail.pre = n
-	n.next = l.tail
+	pre := l.Tail.Pre
+	pre.Next = n
+	l.Tail.Pre = n
+	n.Next = l.Tail
+	n.Pre = pre
 }
 
 func (l *LinkList) DeleteNode(n *Node) {
-	pre := n.pre
-	next := n.next
-	pre.next = next
-	next.pre = pre
+	pre := n.Pre
+	next := n.Next
+	pre.Next = next
+	next.Pre = pre
 	println("delete node")
 }
 
+func (l *LinkList) DeleteLastNode() {
+	willDelNode := l.Tail.Pre
+	willDelNode.Pre.Next = l.Tail
+	l.Tail.Pre = willDelNode.Pre
+}
+
+func (l *LinkList) MoveToHead(n *Node) {
+	// 先把节点拆下来
+	pre := n.Pre
+	next := n.Next
+	pre.Next = next
+	next.Pre = pre
+
+	// 移动到头部
+	n.Pre = l.Head
+	n.Next = l.Head.Next
+	l.Head.Next.Pre = n
+	l.Head.Next = n
+}
+
 func (l *LinkList) PrintLinkList() {
-	n := l.head.next
-	for ; n != nil; n = n.next {
-		fmt.Printf("value = %d ", n.value)
+	n := l.Head.Next
+	println()
+	for ; n != nil; n = n.Next {
+		fmt.Printf("value = %d ", n.Value)
 	}
 }

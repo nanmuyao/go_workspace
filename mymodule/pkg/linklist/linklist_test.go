@@ -29,4 +29,10 @@ func TestPrint(t *testing.T) {
 	l.DeleteNode(n3)
 	l.PrintLinkList()
 
+	l.DeleteLastNode()
+	l.PrintLinkList()
+
+	l.DeleteLastNode()
+	l.PrintLinkList()
+
 }
