@@ -15,7 +15,7 @@ func NewLRU(capacity int32) *LRU {
 	// 这里为什么这样子初始化？ m: make(map[string]linllist.NewNode())为什么不行呢？
 	lru := &LRU{
 		m:        make(map[string]*linklist.Node),
-		linkList: linklist.NewLinkList(), // 写法有bug，head,tail全局变量的会错乱
+		linkList: linklist.NewLinkList(),
 		capacity: capacity,
 	}
 	return lru
