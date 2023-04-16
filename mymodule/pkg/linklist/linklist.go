@@ -4,8 +4,6 @@ import (
 	"fmt"
 )
 
-// 标准库
-
 type Node struct {
 	Value int32
 	Pre   *Node
@@ -20,9 +18,6 @@ func NewNode(v int32) *Node {
 	return n
 }
 
-var Head *Node = &Node{Value: 0, Pre: nil, Next: nil}
-var Tail *Node = &Node{Value: 0, Pre: nil, Next: nil}
-
 type LinkList struct {
 	Head *Node
 	Tail *Node
@@ -31,10 +26,10 @@ type LinkList struct {
 
 func NewLinkList() *LinkList {
 	l := new(LinkList)
-	l.Head = Head
-	l.Tail = Tail
-	l.Head.Next = Tail
-	l.Tail.Pre = Head
+	l.Head = &Node{Value: 0, Pre: nil, Next: nil}
+	l.Tail = &Node{Value: 0, Pre: nil, Next: nil}
+	l.Head.Next = l.Tail
+	l.Tail.Pre = l.Head
 	return l
 }
 
