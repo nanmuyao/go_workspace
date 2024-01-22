@@ -8,6 +8,7 @@ import (
 	"time"
 )
 
+// doc: https://zhuanlan.zhihu.com/p/144308830
 func main() {
 	fmt.Sprint("hello")
 	fmt.Println(time.Now())
