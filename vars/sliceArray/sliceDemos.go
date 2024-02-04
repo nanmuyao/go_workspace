@@ -51,4 +51,15 @@ func main() {
 		s5Slice[i], s5Slice[len(s5Slice)-i-1] = s5Slice[len(s5Slice)-i-1], s5Slice[i]
 	}
 	fmt.Println("reverse s5 slice", s5Slice)
+
+	// slice 不会自动扩容
+	s6 := make([]byte, 3, 3)
+	fmt.Println("s6===", s6)
+	s6 = append(s6, []byte{1, 2, 3, 4}...)
+	fmt.Println("s6===", s6)
+	//panic: runtime error: index out of range [7] with length 7
+	for i := uint8(0); i < 10; i++ {
+		s6[i] = i
+	}
+	fmt.Println("s6===", s6)
 }
