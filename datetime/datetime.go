@@ -9,10 +9,7 @@ import (
 )
 
 // doc: https://zhuanlan.zhihu.com/p/144308830
-func main() {
-	fmt.Sprint("hello")
-	fmt.Println(time.Now())
-
+func mongoDemos() {
 	var (
 		client     *mongo.Client
 		err        error
@@ -30,4 +27,15 @@ func main() {
 	//3.选择表 my_collection
 	collection = db.Collection("my_collection")
 	collection = collection
+}
+
+func timeDemos() {
+	fmt.Println(time.Now())
+	fmt.Println(time.Now().AddDate(0, 0, -1))
+}
+
+func main() {
+	fmt.Sprint("hello")
+	fmt.Println(time.Now())
+	timeDemos()
 }
