@@ -34,8 +34,24 @@ func timeDemos() {
 	fmt.Println(time.Now().AddDate(0, 0, -1))
 }
 
+func GetTimeNdaysAgo(days int) time.Time {
+	// 获取当前时间
+	now := time.Now()
+
+	// 计算七天前的时间
+	nDaysAgo := now.AddDate(0, 0, days)
+
+	// 设置时间为0点
+	sevenDaysAgoMidnight := time.Date(
+		nDaysAgo.Year(), nDaysAgo.Month(), nDaysAgo.Day(),
+		0, 0, 0, 0, nDaysAgo.Location())
+
+	return sevenDaysAgoMidnight
+}
+
 func main() {
-	fmt.Sprint("hello")
-	fmt.Println(time.Now())
-	timeDemos()
+	fmt.Println("hello")
+	//fmt.Println(time.Now())
+	//timeDemos()
+	fmt.Println(GetTimeNdaysAgo(1))
 }

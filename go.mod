@@ -1,6 +1,8 @@
 module mymod
 
-go 1.21.0
+go 1.18
+
+//go 1.21.0
 
 require go.mongodb.org/mongo-driver v1.13.1
 
