@@ -49,9 +49,21 @@ func GetTimeNdaysAgo(days int) time.Time {
 	return sevenDaysAgoMidnight
 }
 
+func t1() {
+	t := time.Now().Add(8 * time.Hour)
+	fmt.Println("testing", t, t.Format("2006-01-02T15:04:05"))
+
+	t = time.Now().Local()
+	fmt.Println("testing", t, t.Format("2006-01-02T15:04:05"))
+
+	t = time.Now().Local().Add(8 * time.Hour)
+	fmt.Println("testing", t, t.Format("2006-01-02T15:04:05"))
+}
+
 func main() {
 	fmt.Println("hello")
 	//fmt.Println(time.Now())
 	//timeDemos()
-	fmt.Println(GetTimeNdaysAgo(1))
+	//fmt.Println(GetTimeNdaysAgo(1))
+	t1()
 }
